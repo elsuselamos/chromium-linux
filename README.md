@@ -5,5 +5,7 @@
 **Optional: Stop and Delete Chromium**
 
 docker stop chromium
+
 docker rm chromium
+
 docker system prune
