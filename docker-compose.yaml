@@ -1,0 +1,32 @@
+version : '3.8'
+
+services:
+  chromium:
+    image: lscr.io/linuxserver/chromium:latest
+    container_name: chromium
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - CUSTOM_USER=       # your username
+      - PASSWORD=          # your password
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin # change local time according to server/vps (using command "realpath --relative-to /usr/share/zoneinfo /etc/localtime")
+      - CHROME_CLI=https://google.com
+    volumes:
+      - /root/chromium/config:/config
+    ports:
+      - 3010:3000   # Change 3010 favorite port (optional if conflict)
+      - 3011:3001   # Change 3011 favorite ports (optional if conflicting)
+    shm_size: "1gb"
+    mem_limit: "2g"    # Maximum RAM up to 2GB
+    cpus: "1"          # Limit CPU usage to a maximum of 100% of one core
+    restart: unless-stopped
+
+# Configure container health monitoring checks
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]  # just check the inference
+      interval: 10m         # Change as you wish 1-60 minutes
+      timeout: 10s          
+      retries: 3            
+      start_period: 30s     
