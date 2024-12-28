@@ -1,11 +1,27 @@
-# chromium-linux
+## Timezone check
 
-**docker compose up -d**
+```
+realpath --relative-to /usr/share/zoneinfo /etc/localtime
+```
+Replace to **`docker-compose.yaml`**
+## Install Chromium
 
-**Optional: Stop and Delete Chromium**
+**1. Create directory**
 
-docker stop chromium
+    mkdir chromium
+    cd chromium
 
-docker rm chromium
+**2.Create  `docker-compose.yaml`  file**
 
-docker system prune
+    nano docker-compose.yaml
+Paste content of   `docker-compose.yaml` then Ctrl + O -> Enter -> Ctrl + X
+## Run Chromium
+
+    cd $HOME && cd chromium
+    docker compose up -d
+
+## Optional: Stop and Delete Chromium
+
+    docker stop chromium
+    docker rm chromium
+    docker system prune
