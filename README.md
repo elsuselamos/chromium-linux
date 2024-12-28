@@ -25,3 +25,8 @@ Paste content of   `docker-compose.yaml` then Ctrl + O -> Enter -> Ctrl + X
     docker stop chromium
     docker rm chromium
     docker system prune
+**To access your Chromium, go to address (Remember not https if your server not configured for https !!!!)**
+
+    http://VPS-IP:3010
+    http://VPS-Ip:3011
+
